@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpuwiho36q1f"]
+
+[ext_resource type="Script" path="res://scripts/button.gd" id="1_s2jvo"]
+[ext_resource type="Texture2D" uid="uid://ctoj8ovlh3084" path="res://icon.svg" id="2_se3wf"]
+
+[node name="Button" type="Button"]
+offset_right = 75.0
+offset_bottom = 75.0
+script = ExtResource("1_s2jvo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(38, 38)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_se3wf")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]
