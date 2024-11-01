@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cromr3px1p3uk"]
+
+[ext_resource type="PackedScene" uid="uid://cdi0ll1as8vee" path="res://windows/tuto_bot.tscn" id="1_1otat"]
+
+[node name="Simulation_1" type="Node2D"]
+
+[node name="Tuto_Bot" parent="." instance=ExtResource("1_1otat")]
