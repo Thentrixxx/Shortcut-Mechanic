@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cromr3px1p3uk"]
+[gd_scene load_steps=8 format=3 uid="uid://cromr3px1p3uk"]
 
 [ext_resource type="PackedScene" uid="uid://cdi0ll1as8vee" path="res://windows/tuto_bot.tscn" id="1_1otat"]
 [ext_resource type="Script" path="res://scripts/quit_button.gd" id="2_3or6o"]
+[ext_resource type="Script" path="res://scripts/button_tuto_bot.gd" id="2_80nif"]
 [ext_resource type="Script" path="res://scripts/windows_button.gd" id="3_eskwv"]
 [ext_resource type="Texture2D" uid="uid://ctoj8ovlh3084" path="res://icon.svg" id="3_tij7h"]
 
@@ -12,6 +13,7 @@
 [node name="Simulation_1" type="Node2D"]
 
 [node name="Tuto_Bot" parent="." instance=ExtResource("1_1otat")]
+visible = false
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -33,14 +35,17 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
+columns = 7
 
-[node name="Button" type="Button" parent="Control/MarginHomePage/HomePage"]
+[node name="ButtonTutoBot" type="Button" parent="Control/MarginHomePage/HomePage"]
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
+script = ExtResource("2_80nif")
 
-[node name="Button2" type="Button" parent="Control/MarginHomePage/HomePage"]
-custom_minimum_size = Vector2(75, 75)
-layout_mode = 2
+[node name="Sprite2D" type="Sprite2D" parent="Control/MarginHomePage/HomePage/ButtonTutoBot"]
+position = Vector2(38, 37)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_tij7h")
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 visible = false
@@ -151,5 +156,6 @@ texture = ExtResource("3_tij7h")
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 
+[connection signal="button_up" from="Control/MarginHomePage/HomePage/ButtonTutoBot" to="Control/MarginHomePage/HomePage/ButtonTutoBot" method="_on_button_up"]
 [connection signal="button_up" from="Control/TextureRect/MarginWindowsMenu/WindowsMenu/QuitButton" to="Control/TextureRect/MarginWindowsMenu/WindowsMenu/QuitButton" method="_on_button_up"]
 [connection signal="button_up" from="Control/TextureRect2/MarginTaskBar/TaskBar/WindowsButton" to="Control/TextureRect2/MarginTaskBar/TaskBar/WindowsButton" method="_on_button_up"]
