@@ -5,9 +5,9 @@ extends Button
 
 var past_time
 var current_time
-@export var double_click_time = 250
-
 var click: int
+
+@export var double_click_time = 300
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,9 +18,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	current_time = Time.get_unix_time_from_system() * 1000
 
-#func _input(e):
-	#if e is InputEventMouseButton and e.button_index == MOUSE_BUTTON_LEFT and e.double_click:
-		#tuto_bot.visible = true
 
 func _on_button_up() -> void:
 	click += 1
@@ -30,4 +27,3 @@ func _on_button_up() -> void:
 		click = 0
 		if current_time - past_time < double_click_time:
 			tuto_bot.visible = true
-	

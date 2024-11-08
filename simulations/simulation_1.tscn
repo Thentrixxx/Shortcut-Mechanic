@@ -1,16 +1,32 @@
-[gd_scene load_steps=8 format=3 uid="uid://cromr3px1p3uk"]
+[gd_scene load_steps=14 format=3 uid="uid://cromr3px1p3uk"]
 
 [ext_resource type="PackedScene" uid="uid://cdi0ll1as8vee" path="res://windows/tuto_bot.tscn" id="1_1otat"]
+[ext_resource type="Script" path="res://scripts/simulation_1.gd" id="1_5wa10"]
 [ext_resource type="Script" path="res://scripts/quit_button.gd" id="2_3or6o"]
 [ext_resource type="Script" path="res://scripts/button_tuto_bot.gd" id="2_80nif"]
 [ext_resource type="Script" path="res://scripts/windows_button.gd" id="3_eskwv"]
 [ext_resource type="Texture2D" uid="uid://ctoj8ovlh3084" path="res://icon.svg" id="3_tij7h"]
+[ext_resource type="Script" path="res://scripts/files_1.gd" id="7_5wk0m"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_flfim"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_brkoe"]
 
+[sub_resource type="Gradient" id="Gradient_a0gcj"]
+colors = PackedColorArray(0.504164, 0.493083, 0.58463, 1, 0.470076, 0.470076, 0.470076, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ta0yw"]
+gradient = SubResource("Gradient_a0gcj")
+
+[sub_resource type="Gradient" id="Gradient_2nem8"]
+colors = PackedColorArray(0.212305, 0.212305, 0.212305, 1, 0.28485, 0.28485, 0.28485, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ltb0v"]
+gradient = SubResource("Gradient_2nem8")
+fill_from = Vector2(0.200855, 0.384615)
+
 [node name="Simulation_1" type="Node2D"]
+script = ExtResource("1_5wa10")
 
 [node name="Tuto_Bot" parent="." instance=ExtResource("1_1otat")]
 visible = false
@@ -47,7 +63,7 @@ position = Vector2(38, 37)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_tij7h")
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
+[node name="TextureHomeMenu" type="TextureRect" parent="Control"]
 visible = false
 layout_mode = 2
 offset_top = 915.0
@@ -55,7 +71,7 @@ offset_right = 106.0
 offset_bottom = 1021.0
 texture = SubResource("CanvasTexture_flfim")
 
-[node name="MarginWindowsMenu" type="MarginContainer" parent="Control/TextureRect"]
+[node name="MarginWindowsMenu" type="MarginContainer" parent="Control/TextureHomeMenu"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -70,14 +86,14 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="WindowsMenu" type="VBoxContainer" parent="Control/TextureRect/MarginWindowsMenu"]
+[node name="WindowsMenu" type="VBoxContainer" parent="Control/TextureHomeMenu/MarginWindowsMenu"]
 layout_mode = 2
 
-[node name="SettingsButton" type="Button" parent="Control/TextureRect/MarginWindowsMenu/WindowsMenu"]
+[node name="SettingsButton" type="Button" parent="Control/TextureHomeMenu/MarginWindowsMenu/WindowsMenu"]
 custom_minimum_size = Vector2(100, 48)
 layout_mode = 2
 
-[node name="SettingsText" type="Label" parent="Control/TextureRect/MarginWindowsMenu/WindowsMenu/SettingsButton"]
+[node name="SettingsText" type="Label" parent="Control/TextureHomeMenu/MarginWindowsMenu/WindowsMenu/SettingsButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -93,12 +109,12 @@ grow_vertical = 2
 text = "Settings
 "
 
-[node name="QuitButton" type="Button" parent="Control/TextureRect/MarginWindowsMenu/WindowsMenu"]
+[node name="QuitButton" type="Button" parent="Control/TextureHomeMenu/MarginWindowsMenu/WindowsMenu"]
 custom_minimum_size = Vector2(100, 48)
 layout_mode = 2
 script = ExtResource("2_3or6o")
 
-[node name="QuitText" type="Label" parent="Control/TextureRect/MarginWindowsMenu/WindowsMenu/QuitButton"]
+[node name="QuitText" type="Label" parent="Control/TextureHomeMenu/MarginWindowsMenu/WindowsMenu/QuitButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -115,7 +131,7 @@ text = "Quit
 "
 horizontal_alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="Control"]
+[node name="TextureTaskBar" type="TextureRect" parent="Control"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -126,7 +142,7 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = SubResource("CanvasTexture_brkoe")
 
-[node name="MarginTaskBar" type="MarginContainer" parent="Control/TextureRect2"]
+[node name="MarginTaskBar" type="MarginContainer" parent="Control/TextureTaskBar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -138,24 +154,149 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="TaskBar" type="HBoxContainer" parent="Control/TextureRect2/MarginTaskBar"]
+[node name="TaskBar" type="HBoxContainer" parent="Control/TextureTaskBar/MarginTaskBar"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
-[node name="WindowsButton" type="Button" parent="Control/TextureRect2/MarginTaskBar/TaskBar"]
+[node name="WindowsButton" type="Button" parent="Control/TextureTaskBar/MarginTaskBar/TaskBar"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 script = ExtResource("3_eskwv")
 
-[node name="Sprite2D" type="Sprite2D" parent="Control/TextureRect2/MarginTaskBar/TaskBar/WindowsButton"]
+[node name="Sprite2D" type="Sprite2D" parent="Control/TextureTaskBar/MarginTaskBar/TaskBar/WindowsButton"]
 position = Vector2(24, 25)
 scale = Vector2(0.296875, 0.28125)
 texture = ExtResource("3_tij7h")
 
-[node name="Button2" type="Button" parent="Control/TextureRect2/MarginTaskBar/TaskBar"]
+[node name="Button2" type="Button" parent="Control/TextureTaskBar/MarginTaskBar/TaskBar"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 
+[node name="Files1" type="Window" parent="."]
+title = "FILES"
+position = Vector2i(200, 200)
+size = Vector2i(720, 460)
+unresizable = true
+script = ExtResource("7_5wk0m")
+
+[node name="InFile" type="TextureRect" parent="Files1"]
+offset_top = 40.0
+offset_right = 1000.0
+offset_bottom = 570.0
+texture = SubResource("GradientTexture1D_ta0yw")
+
+[node name="MarginContainer" type="MarginContainer" parent="Files1/InFile"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Files1/InFile/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="InFileFile1" type="Button" parent="Files1/InFile/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 5)
+layout_mode = 2
+
+[node name="InFileFile2" type="Button" parent="Files1/InFile/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+
+[node name="InFileFile3" type="Button" parent="Files1/InFile/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+
+[node name="InFileFile4" type="Button" parent="Files1/InFile/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+
+[node name="InFileFile5" type="Button" parent="Files1/InFile/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+
+[node name="InFileFile6" type="Button" parent="Files1/InFile/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+
+[node name="InBot" type="TextureRect" parent="Files1"]
+visible = false
+offset_top = 40.0
+offset_right = 1000.0
+offset_bottom = 570.0
+texture = SubResource("GradientTexture1D_ta0yw")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Files1/InBot"]
+layout_mode = 0
+offset_right = 590.0
+offset_bottom = 115.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Files1/InBot/MarginContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="InBotFile1" type="Button" parent="Files1/InBot/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(75, 5)
+layout_mode = 2
+
+[node name="InBotFile2" type="Button" parent="Files1/InBot/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+
+[node name="TaskBar" type="TextureRect" parent="Files1"]
+offset_top = -23.0
+offset_right = 800.0
+offset_bottom = 41.0
+texture = SubResource("GradientTexture2D_ltb0v")
+
+[node name="BotButton" type="Button" parent="Files1/TaskBar"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 28.0
+offset_right = 85.0
+offset_bottom = 59.0
+text = "Bot"
+
+[node name="FileButton" type="Button" parent="Files1/TaskBar"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 28.0
+offset_right = 180.0
+offset_bottom = 59.0
+text = "File
+"
+
+[node name="Files2" type="Window" parent="."]
+auto_translate_mode = 1
+title = "FILES"
+position = Vector2i(250, 250)
+size = Vector2i(720, 560)
+visible = false
+unresizable = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Files2"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Files2/MarginContainer"]
+layout_mode = 2
+
 [connection signal="button_up" from="Control/MarginHomePage/HomePage/ButtonTutoBot" to="Control/MarginHomePage/HomePage/ButtonTutoBot" method="_on_button_up"]
-[connection signal="button_up" from="Control/TextureRect/MarginWindowsMenu/WindowsMenu/QuitButton" to="Control/TextureRect/MarginWindowsMenu/WindowsMenu/QuitButton" method="_on_button_up"]
-[connection signal="button_up" from="Control/TextureRect2/MarginTaskBar/TaskBar/WindowsButton" to="Control/TextureRect2/MarginTaskBar/TaskBar/WindowsButton" method="_on_button_up"]
+[connection signal="button_up" from="Control/TextureHomeMenu/MarginWindowsMenu/WindowsMenu/QuitButton" to="Control/TextureHomeMenu/MarginWindowsMenu/WindowsMenu/QuitButton" method="_on_button_up"]
+[connection signal="button_up" from="Control/TextureTaskBar/MarginTaskBar/TaskBar/WindowsButton" to="Control/TextureTaskBar/MarginTaskBar/TaskBar/WindowsButton" method="_on_button_up"]
+[connection signal="close_requested" from="Files1" to="Files1" method="_on_close_requested"]
+[connection signal="button_up" from="Files1/InBot/MarginContainer2/HBoxContainer/InBotFile1" to="Files1" method="_on_in_bot_file_1_button_up"]
+[connection signal="button_up" from="Files1/TaskBar/BotButton" to="Files1" method="_on_bot_button_button_up"]
