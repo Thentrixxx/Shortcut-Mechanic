@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://scripts/home_file_button.gd" id="5_hu8oa"]
 [ext_resource type="Script" path="res://scripts/files_1.gd" id="7_5wk0m"]
 [ext_resource type="Script" path="res://scripts/files_2.gd" id="9_sbgmn"]
-[ext_resource type="Texture2D" uid="uid://dw1xs3u5jxx4i" path="res://assets/File_Unselected.webp" id="9_tluh0"]
+[ext_resource type="PackedScene" uid="uid://cgug8p5is50tg" path="res://components/File.tscn" id="10_p1ras"]
 [ext_resource type="Texture2D" uid="uid://dgasafxylceh2" path="res://assets/Folder.webp" id="11_ujhki"]
 
 [sub_resource type="Gradient" id="Gradient_btul5"]
@@ -40,6 +40,7 @@ gradient = SubResource("Gradient_2nem8")
 fill_from = Vector2(0.200855, 0.384615)
 
 [node name="Simulation_1" type="Node2D"]
+z_index = 1
 script = ExtResource("1_5wa10")
 
 [node name="Wallpaper" type="TextureRect" parent="."]
@@ -234,53 +235,23 @@ custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
 theme_override_constants/separation = 45
 
-[node name="InFileFile1" type="Button" parent="Files1/InFile/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(45, 50)
+[node name="File_Button" parent="Files1/InFile/MarginContainer/HBoxContainer" instance=ExtResource("10_p1ras")]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Files1/InFile/MarginContainer/HBoxContainer/InFileFile1"]
-texture = ExtResource("9_tluh0")
-offset = Vector2(22, 22)
-
-[node name="InFileFile2" type="Button" parent="Files1/InFile/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(45, 50)
+[node name="File_Button2" parent="Files1/InFile/MarginContainer/HBoxContainer" instance=ExtResource("10_p1ras")]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Files1/InFile/MarginContainer/HBoxContainer/InFileFile2"]
-texture = ExtResource("9_tluh0")
-offset = Vector2(22, 22)
-
-[node name="InFileFile3" type="Button" parent="Files1/InFile/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(45, 50)
+[node name="File_Button3" parent="Files1/InFile/MarginContainer/HBoxContainer" instance=ExtResource("10_p1ras")]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Files1/InFile/MarginContainer/HBoxContainer/InFileFile3"]
-texture = ExtResource("9_tluh0")
-offset = Vector2(22, 22)
-
-[node name="InFileFile4" type="Button" parent="Files1/InFile/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(45, 50)
+[node name="File_Button4" parent="Files1/InFile/MarginContainer/HBoxContainer" instance=ExtResource("10_p1ras")]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Files1/InFile/MarginContainer/HBoxContainer/InFileFile4"]
-texture = ExtResource("9_tluh0")
-offset = Vector2(22, 22)
-
-[node name="InFileFile5" type="Button" parent="Files1/InFile/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(45, 50)
+[node name="File_Button5" parent="Files1/InFile/MarginContainer/HBoxContainer" instance=ExtResource("10_p1ras")]
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Files1/InFile/MarginContainer/HBoxContainer/InFileFile5"]
-texture = ExtResource("9_tluh0")
-offset = Vector2(22, 22)
-
-[node name="InFileFile6" type="Button" parent="Files1/InFile/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(45, 50)
+[node name="File_Button6" parent="Files1/InFile/MarginContainer/HBoxContainer" instance=ExtResource("10_p1ras")]
 layout_mode = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="Files1/InFile/MarginContainer/HBoxContainer/InFileFile6"]
-texture = ExtResource("9_tluh0")
-offset = Vector2(22, 22)
 
 [node name="InFile2" type="TextureRect" parent="Files1"]
 visible = false
@@ -303,29 +274,17 @@ custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
 theme_override_constants/separation = 45
 
-[node name="InFileFile1" type="Button" parent="Files1/InFile2/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(45, 50)
+[node name="File_Button" parent="Files1/InFile2/MarginContainer/HBoxContainer" instance=ExtResource("10_p1ras")]
+visible = false
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Files1/InFile2/MarginContainer/HBoxContainer/InFileFile1"]
-texture = ExtResource("9_tluh0")
-offset = Vector2(22, 22)
-
-[node name="InFileFile2" type="Button" parent="Files1/InFile2/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(45, 50)
+[node name="File_Button2" parent="Files1/InFile2/MarginContainer/HBoxContainer" instance=ExtResource("10_p1ras")]
+visible = false
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Files1/InFile2/MarginContainer/HBoxContainer/InFileFile2"]
-texture = ExtResource("9_tluh0")
-offset = Vector2(22, 22)
-
-[node name="InFileFile3" type="Button" parent="Files1/InFile2/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(45, 50)
+[node name="File_Button3" parent="Files1/InFile2/MarginContainer/HBoxContainer" instance=ExtResource("10_p1ras")]
+visible = false
 layout_mode = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="Files1/InFile2/MarginContainer/HBoxContainer/InFileFile3"]
-texture = ExtResource("9_tluh0")
-offset = Vector2(22, 22)
 
 [node name="InBot" type="TextureRect" parent="Files1"]
 offset_top = 40.0
@@ -363,6 +322,18 @@ layout_mode = 2
 texture = ExtResource("11_ujhki")
 offset = Vector2(22, 22)
 
+[node name="File_Button" parent="Files1/InBot/MarginContainer2/HBoxContainer" instance=ExtResource("10_p1ras")]
+visible = false
+layout_mode = 2
+
+[node name="File_Button2" parent="Files1/InBot/MarginContainer2/HBoxContainer" instance=ExtResource("10_p1ras")]
+visible = false
+layout_mode = 2
+
+[node name="File_Button3" parent="Files1/InBot/MarginContainer2/HBoxContainer" instance=ExtResource("10_p1ras")]
+visible = false
+layout_mode = 2
+
 [node name="TaskBar" type="TextureRect" parent="Files1"]
 offset_top = -23.0
 offset_right = 800.0
@@ -397,6 +368,14 @@ offset_bottom = 59.0
 text = "File2
 "
 
+[node name="NewFileButton" type="Button" parent="Files1"]
+visible = false
+offset_right = 60.0
+offset_bottom = 30.0
+text = "New File"
+
+[node name="Sprite2D" type="Sprite2D" parent="Files1/NewFileButton"]
+
 [node name="Files2" type="Window" parent="."]
 auto_translate_mode = 1
 title = "FILES"
@@ -427,29 +406,17 @@ custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
 theme_override_constants/separation = 45
 
-[node name="InFileFile1" type="Button" parent="Files2/InFile/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(45, 50)
+[node name="File_Button" parent="Files2/InFile/MarginContainer/HBoxContainer" instance=ExtResource("10_p1ras")]
+visible = false
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Files2/InFile/MarginContainer/HBoxContainer/InFileFile1"]
-texture = ExtResource("9_tluh0")
-offset = Vector2(22, 22)
-
-[node name="InFileFile2" type="Button" parent="Files2/InFile/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(45, 50)
+[node name="File_Button2" parent="Files2/InFile/MarginContainer/HBoxContainer" instance=ExtResource("10_p1ras")]
+visible = false
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Files2/InFile/MarginContainer/HBoxContainer/InFileFile2"]
-texture = ExtResource("9_tluh0")
-offset = Vector2(22, 22)
-
-[node name="InFileFile3" type="Button" parent="Files2/InFile/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(45, 50)
+[node name="File_Button3" parent="Files2/InFile/MarginContainer/HBoxContainer" instance=ExtResource("10_p1ras")]
+visible = false
 layout_mode = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="Files2/InFile/MarginContainer/HBoxContainer/InFileFile3"]
-texture = ExtResource("9_tluh0")
-offset = Vector2(22, 22)
 
 [node name="InBot" type="TextureRect" parent="Files2"]
 offset_top = 40.0
@@ -516,10 +483,10 @@ text = "File2
 [connection signal="button_up" from="Control/TextureHomeMenu/MarginWindowsMenu/WindowsMenu/QuitButton" to="Control/TextureHomeMenu/MarginWindowsMenu/WindowsMenu/QuitButton" method="_on_button_up"]
 [connection signal="button_up" from="Control/TextureTaskBar/MarginTaskBar/TaskBar/WindowsButton" to="Control/TextureTaskBar/MarginTaskBar/TaskBar/WindowsButton" method="_on_button_up"]
 [connection signal="close_requested" from="Files1" to="Files1" method="_on_close_requested"]
-[connection signal="button_up" from="Files1/InFile/MarginContainer/HBoxContainer/InFileFile1" to="Files1" method="_on_in_file_file_1_button_up"]
 [connection signal="button_up" from="Files1/InBot/MarginContainer2/HBoxContainer/InBotFile1" to="Files1" method="_on_in_bot_file_1_button_up"]
 [connection signal="button_up" from="Files1/InBot/MarginContainer2/HBoxContainer/InBotFile2" to="Files1" method="_on_in_bot_file_2_button_up"]
 [connection signal="button_up" from="Files1/TaskBar/BotButton" to="Files1" method="_on_bot_button_button_up"]
+[connection signal="button_up" from="Files1/NewFileButton" to="." method="_on_new_file_button_button_up"]
 [connection signal="close_requested" from="Files2" to="Files2" method="_on_close_requested"]
 [connection signal="button_up" from="Files2/InBot/MarginContainer2/HBoxContainer/InBotFile2" to="Files2" method="_on_in_bot_file_2_button_up"]
 [connection signal="button_up" from="Files2/TaskBar/BotButton" to="Files2" method="_on_bot_button_button_up"]

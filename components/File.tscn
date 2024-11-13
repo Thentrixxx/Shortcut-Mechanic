@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgug8p5is50tg"]
+
+[ext_resource type="Script" path="res://scripts/file_script.gd" id="1_on4xp"]
+[ext_resource type="Texture2D" uid="uid://dw1xs3u5jxx4i" path="res://assets/File_Unselected.webp" id="2_d3cdg"]
+
+[node name="File_Button" type="Button"]
+custom_minimum_size = Vector2(45, 50)
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_on4xp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(22, 22)
+texture = ExtResource("2_d3cdg")
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]

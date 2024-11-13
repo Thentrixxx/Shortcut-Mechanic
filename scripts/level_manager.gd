@@ -3,22 +3,13 @@ extends Node
 
 # Dictionary that manages the entire game.
 var shortcuts = {
-	"Shortcut_Ctrl+Z": {"Score": 400, "Priority": 2}
+	"Shortcut_Placeholder": {"Score": 0, "Priority": 1}
 }
 
 
 # Function on startup for testing.
 func _ready():
-	add_shortcut("Shortcut_Ctrl+Y", 500, 3)
-	add_shortcut("Shortcut_Ctrl+F", 250, 1)
-	add_shortcut("Shortcut_Ctrl+F", 250, 2)
-	print_shortcuts()
-	add_score("Shortcut_Ctrl+Y", 50)
-	add_score("Shortcut_Ctrl+F", 50)
-	subtract_score("Shortcut_Ctrl+Z", 500)
-	print_shortcuts()
-	remove_shortcut("Shortcut_Ctrl+F")
-	print_shortcuts()
+	pass
 
 
 # Function that adds a shortcut to the dictionary "shortcuts"

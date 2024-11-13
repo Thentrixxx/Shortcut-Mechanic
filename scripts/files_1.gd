@@ -12,6 +12,8 @@ extends Window
 @onready var in_bot_file_1: Button = $InBot/MarginContainer2/HBoxContainer/InBotFile1
 @onready var in_bot_file_2: Button = $InBot/MarginContainer2/HBoxContainer/InBotFile2
 
+
+
 # Variables for double clicking a button
 var past_time
 var current_time
