@@ -18,6 +18,6 @@ func _on_button_up() -> void:
 	if is_pressed == false:
 		sprite_2d.texture=ResourceLoader.load("res://assets/File_Selected.webp")
 		is_pressed = true
-	elif is_pressed == true:
-		sprite_2d.texture=ResourceLoader.load("res://assets/File_Unselected.webp")
-		is_pressed = false
+	#elif is_pressed == true:
+		#sprite_2d.texture=ResourceLoader.load("res://assets/File_Unselected.webp")
+		#is_pressed = false
