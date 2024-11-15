@@ -3,7 +3,7 @@ extends Node
 
 # Dictionary that manages the entire game.
 var shortcuts = {
-	"Shortcut_Placeholder": {"Score": 0, "Priority": 1}
+	"Shortcut_Placeholder": {"Score": 0, "Priority": 0}
 }
 
 
