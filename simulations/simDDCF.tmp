@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cromr3px1p3uk"]
+[gd_scene load_steps=22 format=3 uid="uid://cromr3px1p3uk"]
 
 [ext_resource type="PackedScene" uid="uid://cdi0ll1as8vee" path="res://windows/tuto_bot.tscn" id="1_1otat"]
 [ext_resource type="Script" path="res://scripts/simulation_1.gd" id="1_5wa10"]
@@ -40,20 +40,6 @@ colors = PackedColorArray(0.212305, 0.212305, 0.212305, 1, 0.28485, 0.28485, 0.2
 gradient = SubResource("Gradient_2nem8")
 fill_from = Vector2(0.200855, 0.384615)
 
-[sub_resource type="Gradient" id="Gradient_iwaxu"]
-colors = PackedColorArray(0.253656, 0.158677, 0.0938829, 1, 0.385025, 0.219445, 0.235301, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_01gl6"]
-gradient = SubResource("Gradient_iwaxu")
-
-[sub_resource type="Gradient" id="Gradient_62q8u"]
-offsets = PackedFloat32Array(0.0037594, 0.496241, 1)
-colors = PackedColorArray(0.301642, 0.228525, 0.426527, 1, 0.208323, 0.262638, 0.506225, 1, 0, 0.368627, 0.458824, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_c1v3h"]
-gradient = SubResource("Gradient_62q8u")
-fill_from = Vector2(0, 1)
-
 [node name="Simulation_1" type="Node2D"]
 z_index = 1
 script = ExtResource("1_5wa10")
@@ -69,8 +55,7 @@ texture = ExtResource("2_eapes")
 offset = Vector2(1280, 720)
 
 [node name="Tuto_Bot" parent="." instance=ExtResource("1_1otat")]
-initial_position = 0
-position = Vector2i(1500, 50)
+visible = false
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -105,7 +90,6 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_tij7h")
 
 [node name="HomeFileButton" type="Button" parent="Control/MarginHomePage/HomePage"]
-visible = false
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 script = ExtResource("5_hu8oa")
@@ -220,11 +204,14 @@ position = Vector2(24, 25)
 scale = Vector2(0.296875, 0.28125)
 texture = ExtResource("3_tij7h")
 
+[node name="Button2" type="Button" parent="Control/TextureTaskBar/MarginTaskBar/TaskBar"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
 [node name="Files1" type="Window" parent="."]
 title = "FILES"
 position = Vector2i(200, 142)
 size = Vector2i(720, 460)
-visible = false
 unresizable = true
 script = ExtResource("7_5wk0m")
 
@@ -461,7 +448,6 @@ texture = ExtResource("11_ujhki")
 offset = Vector2(22, 22)
 
 [node name="InBotFile2" type="Button" parent="Files2/InBot/MarginContainer2/HBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(45, 50)
 layout_mode = 2
 
@@ -496,77 +482,15 @@ text = "File2
 [node name="Files_Grabbed Window" type="Window" parent="."]
 transparent_bg = true
 position = Vector2i(200, 200)
-visible = false
 transient = true
 borderless = true
-always_on_top = true
 transparent = true
-unfocusable = true
-mouse_passthrough = true
 
 [node name="Files_Grabbed" type="Sprite2D" parent="Files_Grabbed Window"]
 top_level = true
 z_index = 29
 texture = ExtResource("13_g6inc")
 centered = false
-
-[node name="Debug Window" type="Window" parent="."]
-title = "DEBUG"
-position = Vector2i(1450, 800)
-size = Vector2i(450, 200)
-unresizable = true
-
-[node name="TextureRect" type="TextureRect" parent="Debug Window"]
-custom_minimum_size = Vector2(450, 200)
-offset_right = 40.0
-offset_bottom = 40.0
-texture = SubResource("GradientTexture2D_01gl6")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Debug Window"]
-custom_minimum_size = Vector2(450, 200)
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_font_sizes/bold_italics_font_size = 20
-theme_override_font_sizes/italics_font_size = 20
-theme_override_font_sizes/mono_font_size = 20
-theme_override_font_sizes/normal_font_size = 20
-theme_override_font_sizes/bold_font_size = 20
-bbcode_enabled = true
-scroll_following = true
-tab_size = 6
-
-[node name="Level Chosen" type="Window" parent="."]
-initial_position = 1
-size = Vector2i(600, 400)
-visible = false
-
-[node name="TextureRect" type="TextureRect" parent="Level Chosen"]
-custom_minimum_size = Vector2(600, 400)
-offset_right = 40.0
-offset_bottom = 40.0
-texture = SubResource("GradientTexture2D_c1v3h")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Level Chosen"]
-custom_minimum_size = Vector2(600, 0)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -50.0
-offset_right = 150.0
-offset_bottom = 150.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/bold_italics_font_size = 40
-theme_override_font_sizes/italics_font_size = 40
-theme_override_font_sizes/mono_font_size = 40
-theme_override_font_sizes/normal_font_size = 40
-theme_override_font_sizes/bold_font_size = 40
-bbcode_enabled = true
-text = "[center]Ctrl+N Level Loaded
-Level 1.1[/center]"
 
 [connection signal="button_up" from="Control/MarginHomePage/HomePage/ButtonTutoBot" to="Control/MarginHomePage/HomePage/ButtonTutoBot" method="_on_button_up"]
 [connection signal="button_up" from="Control/MarginHomePage/HomePage/HomeFileButton" to="Control/MarginHomePage/HomePage/HomeFileButton" method="_on_button_up"]

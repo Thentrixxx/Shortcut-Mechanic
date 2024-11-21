@@ -57,6 +57,11 @@ var is_file_created = 0
 @onready var debug_text: RichTextLabel = $"Debug Window/RichTextLabel"
 
 
+# Level Chosen Window
+@onready var level_chosen_window: Window = $"Level Chosen"
+@onready var level_chosen_label: RichTextLabel = $"Level Chosen/RichTextLabel"
+
+
 
 var is_simulation_finished: bool = false
 var is_grabbed_on: bool = false
@@ -187,18 +192,23 @@ func dialogue() -> void:
 		dialogue_times_pressed += 1
 		if dialogue_times_pressed == 1:
 			change_tuto_dialogue("Here, you can learn about shortcuts in a fun and effective way!")
+			tuto_bot.change_bot_sprite("res://assets/Tuto_Bot_Loading.png")
 			
 		elif dialogue_times_pressed == 2:
 			change_tuto_dialogue("You'll be working on broken robots by repairing their operating systems.")
+			tuto_bot.change_bot_sprite("res://assets/Tuto_Bot_First.png")
 			
 		elif dialogue_times_pressed == 3:
 			change_tuto_dialogue("Let's get you started with a bit of a knowledge check!")
+			tuto_bot.change_bot_sprite("res://assets/Tuto_Bot_First.png")
 			
 		elif dialogue_times_pressed == 4:
 			change_tuto_dialogue("ENTERING SIMULATION...")
+			tuto_bot.change_bot_sprite("res://assets/Tuto_Bot_Third.png")
 			
 		elif dialogue_times_pressed == 5:
 			change_tuto_dialogue("Say hello to Bort!")
+			tuto_bot.change_bot_sprite("res://assets/Tuto_Bot_First.png")
 			#Adding the shortcuts
 			LevelManager.add_shortcut("Shortcut_Ctrl+N", 100, 1)
 			LevelManager.add_shortcut("Shortcut_Ctrl+Shift+N", 100, 2)
@@ -209,16 +219,20 @@ func dialogue() -> void:
 			
 		elif dialogue_times_pressed == 6:
 			change_tuto_dialogue("He's not looking so hot. In fact, I think he's a bit overloaded...")
+			tuto_bot.change_bot_sprite("res://assets/Tuto_Bot_Second.png")
 			
 		elif dialogue_times_pressed == 7:
 			change_tuto_dialogue("Maybe we just need to separate his contents a bit!")
+			tuto_bot.change_bot_sprite("res://assets/Tuto_Bot_Third.png")
 			
 		elif dialogue_times_pressed == 8:
 			change_tuto_dialogue("I've given you access to his files system, it should be located on your desktop.")
 			home_button_file.visible = true
+			tuto_bot.change_bot_sprite("res://assets/Tuto_Bot_First.png")
 			
 		elif dialogue_times_pressed >= 9:
 			change_tuto_dialogue("Create a new folder for him in the scene tree, then split some of the files into that folder.")
+			tuto_bot.change_bot_sprite("res://assets/Tuto_Bot_First.png")
 	
 	# After the simulation is finished
 	elif is_simulation_finished == true:
@@ -229,6 +243,16 @@ func dialogue() -> void:
 			files_2.visible = false
 			home_button_file.visible = false
 			LevelManager.print_shortcuts()
+		
+		if finished_dialogue_times_pressed == 2:
+			LevelManager.give_level()
+			if LevelManager.next_level_selected == "Shortcut_Ctrl+N":
+				level_chosen_label.text = "[center]Ctrl+N Level Loaded \n Level 1.1[/center]"
+			elif LevelManager.next_level_selected == "Shortcut_Ctrl+Shift+N":
+				level_chosen_label.text = "[center]Ctrl+Shift+N Level Loaded \n Level 1.1[/center]"
+			elif LevelManager.next_level_selected == "Shortcut_Alt+Up":
+				level_chosen_label.text = "[center]Alt+Up Level Loaded \n Level 1.1[/center]"
+			level_chosen_window.visible = true
 
 func change_tuto_dialogue(dialogue: String):
 	tuto_bot_text.text = dialogue

@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdi0ll1as8vee"]
+[gd_scene load_steps=6 format=3 uid="uid://cdi0ll1as8vee"]
 
 [ext_resource type="Script" path="res://scripts/tuto_bot.gd" id="1_rfovg"]
-[ext_resource type="Texture2D" uid="uid://ctoj8ovlh3084" path="res://icon.svg" id="2_0j8r7"]
+[ext_resource type="Texture2D" uid="uid://c074j5uf8105y" path="res://assets/Tuto_Bot_First.png" id="2_2owca"]
+
+[sub_resource type="Gradient" id="Gradient_sedbr"]
+offsets = PackedFloat32Array(0, 0.996241)
+colors = PackedColorArray(0.00743573, 0.0335156, 0.017792, 1, 0.00893598, 0.0330796, 0.016654, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_54g7w"]
+gradient = SubResource("Gradient_sedbr")
+fill_from = Vector2(0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wvhrk"]
 
 [node name="Tuto_Bot" type="Window"]
 title = "TUTO_BOT"
@@ -10,10 +20,17 @@ size = Vector2i(400, 700)
 unresizable = true
 script = ExtResource("1_rfovg")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_54g7w")
+
 [node name="Robot Sprite" type="Sprite2D" parent="."]
-position = Vector2(200, 200)
-scale = Vector2(2, 2)
-texture = ExtResource("2_0j8r7")
+position = Vector2(200, 225)
+texture = ExtResource("2_2owca")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(150, 150)
@@ -24,7 +41,7 @@ anchor_bottom = 1.0
 offset_top = -200.0
 grow_horizontal = 2
 grow_vertical = 0
-color = Color(0.192157, 0.192157, 0.192157, 0.866667)
+color = Color(0.102968, 0.216468, 0.190538, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
 layout_mode = 1
@@ -46,7 +63,7 @@ theme_override_font_sizes/italics_font_size = 25
 theme_override_font_sizes/mono_font_size = 25
 theme_override_font_sizes/normal_font_size = 25
 theme_override_font_sizes/bold_font_size = 25
-text = "You can do this thing, or you can do this thing! That's up to you. Have fun !!!"
+text = "Welcome to Shortcut Mechanic!"
 scroll_active = false
 
 [node name="Button" type="Button" parent="."]
@@ -55,9 +72,13 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -8.0
+offset_left = -10.0
+offset_top = -48.0
+offset_right = 10.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wvhrk")
 text = "Continue"
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]

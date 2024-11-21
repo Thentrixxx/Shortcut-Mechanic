@@ -1,5 +1,6 @@
 extends Node
 
+var next_level_selected
 
 # Dictionary that manages the entire game.
 var shortcuts = {
@@ -8,7 +9,7 @@ var shortcuts = {
 
 # Function on startup for testing.
 func _ready():
-	give_level()
+	pass
 
 # Function that adds a shortcut to the dictionary "shortcuts"
 func add_shortcut(shortcut: String, score: int, priority: int):
@@ -56,7 +57,6 @@ func print_shortcuts():
 
 # Function responsible for giving the player a level based on the dictionary.
 func give_level():
-	var next_level_selected
 	var next_level_level = 26
 	for i in shortcuts:
 		var is_priority = false
@@ -71,6 +71,8 @@ func give_level():
 			elif is_priority == true:
 				priority = shortcuts[i][x]
 				is_priority = false
+		
+		print(str(shortcut))
 		print(str(score))
 		print(str(priority))
 		
