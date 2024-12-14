@@ -55,12 +55,18 @@ var is_file_created = 0
 
 # Debug Window
 @onready var debug_text: RichTextLabel = $"Debug Window/RichTextLabel"
+@onready var debug_window: Window = $"Debug Window"
+
 
 
 # Level Chosen Window
 @onready var level_chosen_window: Window = $"Level Chosen"
 @onready var level_chosen_label: RichTextLabel = $"Level Chosen/RichTextLabel"
 
+
+# Bort Stuff
+@onready var bort_window: Window = $"Bort Window"
+@onready var bort_sprite: Sprite2D = $"Bort Window/Sprite2D"
 
 
 var is_simulation_finished: bool = false
@@ -71,6 +77,7 @@ var mouse_pos
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Tuto_Bot.connect("button_pressed", dialogue)
+	debug_window.visible = true
 
 # Where Inputs are being looked for
 func _process(delta: float) -> void:
@@ -89,9 +96,9 @@ func _process(delta: float) -> void:
 				in_bot_file_2.visible = true
 				w2_in_bot_file_2.visible = true
 				if times_shift_n_pressed == 0:
+					times_shift_n_pressed += 1
 					LevelManager.add_score("Shortcut_Ctrl+Shift+N", 100)
 					update_debug_text("Added 100 Points to Shortcut_Ctrl+Shift+N")
-					times_shift_n_pressed += 1
 	
 	# When Ctrl+Shift+N is pressed, duplicate the file.
 	if (Input.is_action_just_pressed("ctrl+n")):
@@ -127,6 +134,8 @@ func _process(delta: float) -> void:
 			top_file_button.visible = true
 			top_file_button_2.visible = true
 			top_file_button_3.visible = true
+			LevelManager.subtract_score("Shortcut_Ctrl+N", 100)
+			update_debug_text("Subtracted 100 Points from Shortcut_Ctrl+N")
 		# Dragging the files into the second file
 		elif first_route_pressed == 3:
 			files_grabbed_window.visible = true
@@ -142,11 +151,10 @@ func _process(delta: float) -> void:
 			f2_file_button_3.visible = true
 			# Tells the Dialogue that the simulation is finished
 			is_simulation_finished = true
-			LevelManager.subtract_score("Shortcut_Ctrl+N", 100)
 			LevelManager.subtract_score("Shortcut_Alt+Up", 100)
-			update_debug_text("Subtracted 100 Points from Shortcut_Ctrl+N")
 			update_debug_text("Subtracted 50 Points from Shortcut_Alt+Up")
 			change_tuto_dialogue("You did it! What a job well done.")
+			bort_sprite.texture = ResourceLoader.load("res://assets/Bort_Fixed.png")
 	
 	# Stuff for helping with route 2
 	if (Input.is_action_just_pressed("alt+left_click")):
@@ -167,9 +175,12 @@ func _process(delta: float) -> void:
 			w2_file_button_3.visible = true
 			# Tells the Dialogue that the simulation is finished
 			is_simulation_finished = true
+			LevelManager.add_score("Shortcut_Ctrl+Shift+N", 100)
+			update_debug_text("Added 100 Points to Shortcut_Ctrl+Shift+N")
 			LevelManager.subtract_score("Shortcut_Alt+Up", 100)
 			update_debug_text("Subtracted 50 Points from Shortcut_Alt+Up")
 			change_tuto_dialogue("You did it! What a job well done.")
+			bort_sprite.texture = ResourceLoader.load("res://assets/Bort_Fixed.png")
 
 
 func _physics_process(delta: float) -> void:
@@ -216,6 +227,7 @@ func dialogue() -> void:
 			update_debug_text("Shortcut Added: Ctrl+N, Score: 100, Priority: 1")
 			update_debug_text("Shortcut Added: Ctrl+Shift+N, Score: 100, Priority: 2")
 			update_debug_text("Shortcut Added: Alt+Up, Score: 50, Priority: 4")
+			bort_window.visible = true
 			
 		elif dialogue_times_pressed == 6:
 			change_tuto_dialogue("He's not looking so hot. In fact, I think he's a bit overloaded...")
@@ -242,16 +254,17 @@ func dialogue() -> void:
 			files_1.visible = false
 			files_2.visible = false
 			home_button_file.visible = false
+			bort_window.visible = false
 			LevelManager.print_shortcuts()
 		
 		if finished_dialogue_times_pressed == 2:
 			LevelManager.give_level()
 			if LevelManager.next_level_selected == "Shortcut_Ctrl+N":
-				level_chosen_label.text = "[center]Ctrl+N Level Loaded \n Level 1.1[/center]"
+				level_chosen_label.text = "[center]Ctrl+N Level Loaded \n Class 1.1[/center]"
 			elif LevelManager.next_level_selected == "Shortcut_Ctrl+Shift+N":
-				level_chosen_label.text = "[center]Ctrl+Shift+N Level Loaded \n Level 1.1[/center]"
+				level_chosen_label.text = "[center]Ctrl+Shift+N Level Loaded \n Class 1.1[/center]"
 			elif LevelManager.next_level_selected == "Shortcut_Alt+Up":
-				level_chosen_label.text = "[center]Alt+Up Level Loaded \n Level 1.1[/center]"
+				level_chosen_label.text = "[center]Alt+Up Level Loaded \n Class 1.1[/center]"
 			level_chosen_window.visible = true
 
 func change_tuto_dialogue(dialogue: String):

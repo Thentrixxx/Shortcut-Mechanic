@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cromr3px1p3uk"]
+[gd_scene load_steps=32 format=3 uid="uid://cromr3px1p3uk"]
 
 [ext_resource type="PackedScene" uid="uid://cdi0ll1as8vee" path="res://windows/tuto_bot.tscn" id="1_1otat"]
 [ext_resource type="Script" path="res://scripts/simulation_1.gd" id="1_5wa10"]
@@ -7,12 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://cjklklgnclmgf" path="res://assets/Shortcut_Mechanic_Logo.png" id="2_eapes"]
 [ext_resource type="Script" path="res://scripts/windows_button.gd" id="3_eskwv"]
 [ext_resource type="Texture2D" uid="uid://ctoj8ovlh3084" path="res://icon.svg" id="3_tij7h"]
+[ext_resource type="Texture2D" uid="uid://dg12xdnfhqkc5" path="res://assets/Tuto_Bot_Icon.png" id="5_hs0hn"]
 [ext_resource type="Script" path="res://scripts/home_file_button.gd" id="5_hu8oa"]
 [ext_resource type="Script" path="res://scripts/files_1.gd" id="7_5wk0m"]
+[ext_resource type="Texture2D" uid="uid://dkkcvqvgrl3a6" path="res://assets/File_Icon.png" id="7_wvhhi"]
 [ext_resource type="Script" path="res://scripts/files_2.gd" id="9_sbgmn"]
 [ext_resource type="PackedScene" uid="uid://cgug8p5is50tg" path="res://components/File.tscn" id="10_p1ras"]
 [ext_resource type="Texture2D" uid="uid://dgasafxylceh2" path="res://assets/Folder.webp" id="11_ujhki"]
 [ext_resource type="Texture2D" uid="uid://b2coct0qgxn3k" path="res://assets/File_Selected_Multiple.webp" id="13_g6inc"]
+[ext_resource type="Texture2D" uid="uid://c7m1n824hd233" path="res://assets/Bort_Broken.png" id="16_54gsj"]
 
 [sub_resource type="Gradient" id="Gradient_btul5"]
 colors = PackedColorArray(0.00323049, 0.419429, 0.627931, 1, 0.66244, 0.656405, 5.77569e-07, 1)
@@ -25,7 +28,14 @@ fill_from = Vector2(0, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_flfim"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_brkoe"]
+[sub_resource type="Gradient" id="Gradient_s6uak"]
+colors = PackedColorArray(0.631373, 0.631373, 0.631373, 0.470588, 0.745098, 0.745098, 0.745098, 0.470588)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y8ifc"]
+gradient = SubResource("Gradient_s6uak")
+width = 1156
+height = 50
+fill_to = Vector2(1, 1)
 
 [sub_resource type="Gradient" id="Gradient_a0gcj"]
 colors = PackedColorArray(0.504164, 0.493083, 0.58463, 1, 0.470076, 0.470076, 0.470076, 1)
@@ -54,6 +64,14 @@ colors = PackedColorArray(0.301642, 0.228525, 0.426527, 1, 0.208323, 0.262638, 0
 gradient = SubResource("Gradient_62q8u")
 fill_from = Vector2(0, 1)
 
+[sub_resource type="Gradient" id="Gradient_jju38"]
+colors = PackedColorArray(0.249484, 0.305553, 0.30313, 1, 0.34838, 0.385079, 0.403192, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l2ald"]
+gradient = SubResource("Gradient_jju38")
+width = 200
+height = 250
+
 [node name="Simulation_1" type="Node2D"]
 z_index = 1
 script = ExtResource("1_5wa10")
@@ -71,6 +89,7 @@ offset = Vector2(1280, 720)
 [node name="Tuto_Bot" parent="." instance=ExtResource("1_1otat")]
 initial_position = 0
 position = Vector2i(1500, 50)
+visible = false
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -82,38 +101,38 @@ offset_bottom = 1080.0
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1020.0
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="HomePage" type="GridContainer" parent="Control/MarginHomePage"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 10
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
 columns = 7
 
 [node name="ButtonTutoBot" type="Button" parent="Control/MarginHomePage/HomePage"]
-custom_minimum_size = Vector2(75, 75)
+custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
 script = ExtResource("2_80nif")
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/MarginHomePage/HomePage/ButtonTutoBot"]
-position = Vector2(38, 37)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_tij7h")
+position = Vector2(32, 32)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_hs0hn")
 
 [node name="HomeFileButton" type="Button" parent="Control/MarginHomePage/HomePage"]
 visible = false
-custom_minimum_size = Vector2(75, 75)
+custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
 script = ExtResource("5_hu8oa")
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/MarginHomePage/HomePage/HomeFileButton"]
-position = Vector2(38, 37)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_tij7h")
+position = Vector2(32, 32)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("7_wvhhi")
 
 [node name="TextureHomeMenu" type="TextureRect" parent="Control"]
 visible = false
@@ -192,7 +211,7 @@ anchor_bottom = 1.0
 offset_top = -60.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = SubResource("CanvasTexture_brkoe")
+texture = SubResource("GradientTexture2D_y8ifc")
 
 [node name="MarginTaskBar" type="MarginContainer" parent="Control/TextureTaskBar"]
 layout_mode = 1
@@ -514,6 +533,7 @@ centered = false
 title = "DEBUG"
 position = Vector2i(1450, 800)
 size = Vector2i(450, 200)
+visible = false
 unresizable = true
 
 [node name="TextureRect" type="TextureRect" parent="Debug Window"]
@@ -567,6 +587,22 @@ theme_override_font_sizes/bold_font_size = 40
 bbcode_enabled = true
 text = "[center]Ctrl+N Level Loaded
 Level 1.1[/center]"
+
+[node name="Bort Window" type="Window" parent="."]
+title = "BORT"
+position = Vector2i(20, 750)
+size = Vector2i(200, 250)
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="Bort Window"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("GradientTexture2D_l2ald")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bort Window"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_54gsj")
+centered = false
 
 [connection signal="button_up" from="Control/MarginHomePage/HomePage/ButtonTutoBot" to="Control/MarginHomePage/HomePage/ButtonTutoBot" method="_on_button_up"]
 [connection signal="button_up" from="Control/MarginHomePage/HomePage/HomeFileButton" to="Control/MarginHomePage/HomePage/HomeFileButton" method="_on_button_up"]
